@@ -1,4 +1,4 @@
-## Mod info here
+Just a mod template for myself
 
 ## License
 
