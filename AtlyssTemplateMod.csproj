@@ -52,12 +52,12 @@
 
 	<Target Name="FixNamespaces" BeforeTargets="BeforeBuild">
 		<Message Text="Setting AssemblyVersion to $(Version)" Importance="High" />
-		<Exec Command="python NamespaceFixer.py $(AssemblyName) src" WorkingDirectory="$(SolutionRoot)" />
+		<Exec Command="python ProjectUtil.py fix-namespaces $(AssemblyName) src" WorkingDirectory="$(SolutionRoot)" />
 	</Target>
 
 	<Target Name="AlignVersions" BeforeTargets="BeforeBuild">
 		<Message Text="Setting AssemblyVersion to $(Version)" Importance="High" />
-		<Exec Command="python VersionNumFixer.py $(Version) src/PluginInfo.cs" WorkingDirectory="$(SolutionRoot)" />
+		<Exec Command="python ProjectUtil.py set-version $(Version) src/PluginInfo.cs" WorkingDirectory="$(SolutionRoot)" />
 	</Target>
 
 </Project>
