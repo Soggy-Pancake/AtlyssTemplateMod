@@ -73,4 +73,11 @@
       Importance="High" />
     <Exec Command="cd $(StagingDir); zip -r $(ZipFileName) ." />
   </Target>
+    <Target Name="ZipStaging" AfterTargets="PostBuildCopy_ToStaging"
+          <Message Text="Creating zip archive $(StagingDir)/../$(ZipFileName)" Importance="High"/>
+          <Exec Command="cd $(StagingDir); zip -r ..\$(ZipFileName) ."/>
+          
+          <!-- My machine didn't have zip intially, this is useful ig if you dont wanna install it. Just comment out the one above -->
+          <!-- <Exec Command="cd $(StagingDir); bsdtar -a -cf ../$(ZipFileName) ."/> -->
+    </Target>
 </Project>
