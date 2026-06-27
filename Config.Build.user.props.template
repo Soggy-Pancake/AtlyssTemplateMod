@@ -47,7 +47,7 @@
   </Target>
 
   <Target Name="PostBuildCopy_ToStaging" AfterTargets="Build"
-    Condition="'$(BuildStaging)' == 'true'">
+    Condition="'$(BuildStaging)' == 'true' And '$(Configuration)' == 'Release'">
 
     <!-- Ensure staging directory exists? -->
     <MakeDir Directories="$(StagingDir)" />
@@ -67,13 +67,8 @@
       ContinueOnError="false" />
   </Target>
 
-  <Target Name="ZipStaging" AfterTargets="PostBuildCopy_ToStaging"
-    Condition="'$(BuildStaging)' == 'true'">
-    <Message Text="Creating zip archive $(StagingDir)/../$(ZipFileName)"
-      Importance="High" />
-    <Exec Command="cd $(StagingDir); zip -r $(ZipFileName) ." />
-  </Target>
     <Target Name="ZipStaging" AfterTargets="PostBuildCopy_ToStaging"
+              Condition="'$(BuildStaging)' == 'true' And '$(Configuration)' == 'Release'">
           <Message Text="Creating zip archive $(StagingDir)/../$(ZipFileName)" Importance="High"/>
           <Exec Command="cd $(StagingDir); zip -r ..\$(ZipFileName) ."/>
           
